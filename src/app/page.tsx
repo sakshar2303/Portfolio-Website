@@ -1,19 +1,23 @@
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
+import About from "@/components/About";
+import Projects from "@/components/Projects";
+import Skills from "@/components/Skills";
+import Experience from "@/components/Experience";
+import Contact from "@/components/Contact";
+import Footer from "@/components/Footer";
 
 export default function Home() {
   return (
     <main className="min-h-screen">
       <Navbar />
       <Hero />
-      {/* Sections to be added:
-          <About />
-          <Work />
-          <Skills />
-          <Experience />
-          <Contact />
-      */}
-      <div className="h-[200vh]"></div> {/* Temp spacing for scrolling testing */}
+      <About />
+      <Projects />
+      <Skills />
+      <Experience />
+      <Contact />
+      <Footer />
     </main>
   );
 }
