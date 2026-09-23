@@ -1,40 +1,52 @@
 "use client";
 
-import { motion } from "framer-motion";
 import { profile } from "@/data/profile";
+
+const stats = [
+  { value: "3+", label: "Years of\nEngineering" },
+  { value: "20+", label: "Systems\nDeployed" },
+  { value: "10+", label: "Core\nTechnologies" },
+];
 
 export default function About() {
   return (
-    <section id="about" className="py-24 relative">
+    <section id="about" className="py-24 md:py-32 relative border-b border-[#222]">
       <div className="max-w-5xl mx-auto px-6 md:px-12">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.6 }}
-        >
-          <h2 className="text-sm font-medium tracking-widest text-blue-400 uppercase mb-6">About</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-            <div>
-              <p className="text-2xl md:text-3xl font-medium leading-relaxed text-gray-200 text-balance mb-6">
-                I engineer digital products that combine beautiful design with robust architecture.
+        <div className="flex items-center gap-4 mb-12 border-b border-[#222] pb-4">
+          <span className="text-xs font-mono font-medium tracking-widest text-gray-500 uppercase">
+            01 — System Information
+          </span>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-16">
+          <div className="space-y-6">
+            <h2 className="text-2xl md:text-3xl font-semibold leading-snug tracking-tight text-white">
+              I build high-performance systems with zero compromises.
+            </h2>
+            <div className="space-y-4 text-gray-400 text-sm md:text-base leading-relaxed">
+              <p>{profile.bio}</p>
+              <p>
+                My focus is on concurrent, resilient, and deeply technical backend architectures, combined with sharp, functional interfaces. I believe in zero-downtime, predictable state, and type safety.
               </p>
-              <p className="text-gray-400 leading-relaxed text-lg">
-                {profile.bio}
-              </p>
-            </div>
-            <div className="grid grid-cols-2 gap-6 content-start">
-              <div className="p-6 rounded-2xl bg-white/[0.02] border border-white/5 backdrop-blur-sm">
-                <div className="text-4xl font-semibold text-white mb-2">3+</div>
-                <div className="text-sm text-gray-500">Years of Experience</div>
-              </div>
-              <div className="p-6 rounded-2xl bg-white/[0.02] border border-white/5 backdrop-blur-sm">
-                <div className="text-4xl font-semibold text-white mb-2">20+</div>
-                <div className="text-sm text-gray-500">Projects Shipped</div>
-              </div>
             </div>
           </div>
-        </motion.div>
+
+          <div className="flex flex-col gap-4">
+            {stats.map((stat) => (
+              <div
+                key={stat.label}
+                className="flex items-center justify-between p-6 bg-[#111] border border-[#222]"
+              >
+                <div className="text-sm font-mono text-gray-500 whitespace-pre-line leading-snug uppercase">
+                  {stat.label}
+                </div>
+                <div className="text-3xl font-bold text-white tracking-tight">
+                  {stat.value}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
     </section>
   );

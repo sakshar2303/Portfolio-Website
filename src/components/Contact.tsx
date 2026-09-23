@@ -1,40 +1,96 @@
 "use client";
 
-import { motion } from "framer-motion";
 import { profile } from "@/data/profile";
-import { ArrowRight, Mail } from "lucide-react";
+import { ArrowRight, Mail, Copy, Check } from "lucide-react";
+import { useState } from "react";
 
 export default function Contact() {
+  const [copied, setCopied] = useState(false);
+
+  const copyEmail = () => {
+    navigator.clipboard.writeText(profile.email);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  };
+
   return (
-    <section id="contact" className="py-32 relative border-t border-white/5 bg-gradient-to-b from-transparent to-blue-900/5">
-      <div className="max-w-5xl mx-auto px-6 md:px-12 text-center">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.6 }}
-          className="flex flex-col items-center"
-        >
-          <div className="w-16 h-16 rounded-2xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center mb-8 text-blue-400">
-            <Mail className="w-8 h-8" />
+    <section id="contact" className="py-24 md:py-32 relative">
+      <div className="max-w-5xl mx-auto px-6 md:px-12 relative z-10">
+        <div className="flex items-center gap-4 mb-12 border-b border-[#222] pb-4">
+          <span className="text-xs font-mono font-medium tracking-widest text-gray-500 uppercase">
+            05 — System Initialization
+          </span>
+        </div>
+
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
+          <div>
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight text-white leading-[1.1] mb-6">
+              Initiate a connection.
+            </h2>
+            <p className="text-gray-400 max-w-md leading-relaxed text-sm md:text-base">
+              Ready to architect something scalable? My inbox is always open for new opportunities, engineering discussions, or systems challenges.
+            </p>
           </div>
-          
-          <h2 className="text-4xl md:text-6xl font-medium tracking-tight text-white mb-6">
-            Have an idea? <br className="hidden md:block" /> Let's build it.
-          </h2>
-          
-          <p className="text-lg text-gray-400 max-w-xl mx-auto mb-10 text-balance">
-            I'm always open to discussing product design work, new projects, or partnership opportunities.
-          </p>
-          
-          <a 
-            href={`mailto:${profile.email}`}
-            className="group relative inline-flex items-center gap-4 px-8 py-4 bg-white text-black rounded-full font-medium text-lg hover:scale-105 transition-transform duration-300"
-          >
-            <span>Say Hello</span>
-            <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-          </a>
-        </motion.div>
+
+          <div className="flex flex-col gap-6">
+            <div className="p-6 bg-[#111] border border-[#222] flex flex-col gap-4 hover:border-[#444] transition-colors">
+              <div className="flex items-center gap-3">
+                <Mail className="w-4 h-4 text-gray-500" />
+                <span className="text-xs font-mono text-gray-500 uppercase tracking-widest">
+                  Direct_Access
+                </span>
+              </div>
+              <div className="flex items-center justify-between gap-4">
+                <a
+                  href={`mailto:${profile.email}`}
+                  className="text-lg md:text-xl font-medium text-white hover:text-gray-300 transition-colors"
+                >
+                  {profile.email}
+                </a>
+                <button
+                  onClick={copyEmail}
+                  className="shrink-0 w-8 h-8 flex items-center justify-center text-gray-400 hover:text-white transition-colors"
+                  aria-label="Copy email"
+                >
+                  {copied ? (
+                    <Check className="w-4 h-4 text-green-500" />
+                  ) : (
+                    <Copy className="w-4 h-4" />
+                  )}
+                </button>
+              </div>
+            </div>
+
+            <div className="flex flex-col sm:flex-row gap-4">
+              {[
+                { name: "GitHub", url: profile.github },
+                { name: "LinkedIn", url: profile.linkedin },
+                { name: "Twitter", url: profile.twitter },
+              ]
+                .filter((s) => s.url)
+                .map((social) => (
+                  <a
+                    key={social.name}
+                    href={social.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex-1 flex items-center justify-between px-5 py-3 bg-[#111] border border-[#222] text-sm font-mono text-gray-400 hover:text-white hover:border-[#444] transition-colors"
+                  >
+                    {social.name}
+                    <ArrowRight className="w-3.5 h-3.5" />
+                  </a>
+                ))}
+            </div>
+
+            <a
+              href={`mailto:${profile.email}`}
+              className="mt-4 flex items-center justify-center gap-2 px-8 py-4 bg-white text-black font-semibold hover:bg-gray-200 transition-colors w-full"
+            >
+              Ping System
+              <ArrowRight className="w-4 h-4" />
+            </a>
+          </div>
+        </div>
       </div>
     </section>
   );

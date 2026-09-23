@@ -1,49 +1,70 @@
 @import "tailwindcss";
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-  
-  --color-accent: #60a5fa; /* Blue-400 */
-  --color-accent-glow: rgba(96, 165, 250, 0.15);
+@theme {
+  --color-tech-bg: #0a0a0a;
+  --color-tech-card: #111111;
+  --color-tech-border: #222222;
+  --color-tech-accent: #ededed;
 }
 
 :root {
-  /* Enforce dark mode colors */
-  --background: #050505;
-  --foreground: #f3f4f6;
-  --grid-color: rgba(255, 255, 255, 0.03);
-}
-
-html {
-  scroll-behavior: smooth;
+  --background: var(--color-tech-bg);
+  --foreground: #ededed;
 }
 
 body {
-  background-color: var(--background);
   color: var(--foreground);
-  font-family: var(--font-sans), Arial, Helvetica, sans-serif;
+  background: var(--background);
+  font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
   overflow-x: hidden;
-}
-
-/* Subtle animated grid texture */
-.bg-grid-pattern {
+  /* subtle technical grid */
+  background-image: 
+    linear-gradient(to right, rgba(255,255,255,0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255,255,255,0.03) 1px, transparent 1px);
   background-size: 40px 40px;
-  background-image: linear-gradient(to right, var(--grid-color) 1px, transparent 1px),
-    linear-gradient(to bottom, var(--grid-color) 1px, transparent 1px);
-  mask-image: linear-gradient(to bottom, transparent, black 10%, black 90%, transparent);
-  -webkit-mask-image: linear-gradient(to bottom, transparent, black 10%, black 90%, transparent);
 }
 
-/* Typography Utilities */
-.text-balance {
-  text-wrap: balance;
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-tech-bg);
+  border-left: 1px solid var(--color-tech-border);
+}
+::-webkit-scrollbar-thumb {
+  background: #333;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
 }
 
-/* Selection */
-::selection {
-  background-color: rgba(96, 165, 250, 0.3);
-  color: #fff;
+/* Technical Panels */
+.tech-panel {
+  background: var(--color-tech-card);
+  border: 1px solid var(--color-tech-border);
+}
+
+.tech-panel-hover {
+  transition: all 0.2s ease;
+}
+
+.tech-panel-hover:hover {
+  border-color: #444;
+}
+
+/* Typography utilities */
+.tracking-ultra {
+  letter-spacing: 0.15em;
+}
+
+.tracking-tighter-title {
+  letter-spacing: -0.04em;
+}
+
+/* Section divider */
+.section-divider {
+  width: 100%;
+  height: 1px;
+  background: var(--color-tech-border);
 }

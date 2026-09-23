@@ -1,5 +1,38 @@
-export const skills = {
-  frontend: ["React", "Next.js", "TypeScript", "Tailwind CSS", "Framer Motion", "HTML5", "CSS3"],
-  backend: ["Node.js", "Express", "PostgreSQL", "REST APIs", "GraphQL", "MongoDB"],
-  tools: ["Git", "GitHub", "VS Code", "Figma", "Docker", "Vercel"]
+export const skills: Record<string, string[]> = {
+  frontend: [
+    "React",
+    "Next.js",
+    "TypeScript",
+    "JavaScript",
+    "Tailwind CSS",
+    "Framer Motion",
+    "Three.js",
+    "Vite",
+    "HTML/CSS",
+    "Socket.io",
+  ],
+  backend: [
+    "Go",
+    "Python",
+    "FastAPI",
+    "Node.js",
+    "PostgreSQL",
+    "Redis",
+    "Prisma",
+    "NATS JetStream",
+    "REST APIs",
+    "WebSockets",
+  ],
+  tools: [
+    "Git",
+    "Docker",
+    "Linux",
+    "Kubernetes",
+    "CI/CD",
+    "Vercel",
+    "GitHub Actions",
+    "ESLint",
+    "Pytest",
+    "LLM APIs",
+  ],
 };

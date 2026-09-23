@@ -1,65 +1,60 @@
 "use client";
 
-import { motion } from "framer-motion";
 import { profile } from "@/data/profile";
-import { ArrowRight } from "lucide-react";
+import { ArrowDown, Code, Terminal } from "lucide-react";
 import Link from "next/link";
 
 export default function Hero() {
   return (
-    <section className="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden">
-      {/* Decorative Glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-blue-500/10 blur-[120px] rounded-full pointer-events-none" />
-      
-      <div className="relative z-10 max-w-5xl mx-auto px-6 md:px-12 text-center flex flex-col items-center">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.1 }}
-          className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-white/10 bg-white/5 backdrop-blur-sm mb-8"
-        >
-          <span className="w-2 h-2 rounded-full bg-blue-400 animate-pulse" />
-          <span className="text-xs font-medium text-gray-300 uppercase tracking-wider">Available for work</span>
-        </motion.div>
-        
-        <motion.h1
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-          className="text-5xl md:text-7xl lg:text-8xl font-medium tracking-tighter text-balance text-white mb-8"
-        >
-          {profile.tagline}
-        </motion.h1>
-        
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
-          className="text-lg md:text-xl text-gray-400 max-w-2xl mb-12 text-balance"
-        >
+    <section className="relative min-h-screen flex items-center justify-center pt-20 border-b border-[#222]">
+      <div className="relative z-10 max-w-5xl mx-auto px-6 md:px-12 w-full">
+        {/* CLI style prompt / Status */}
+        <div className="flex items-center gap-3 mb-8 font-mono text-sm">
+          <Terminal className="w-4 h-4 text-gray-500" />
+          <span className="text-gray-500">~/{profile.name.toLowerCase()}</span>
+          <span className="text-gray-600">/</span>
+          <span className="text-gray-300">status</span>
+          <span className="flex h-2 w-2 relative ml-2">
+            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-500 opacity-40" />
+            <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500" />
+          </span>
+          <span className="text-green-500">Available</span>
+        </div>
+
+        {/* Stark Typographic Headline */}
+        <h1 className="text-[clamp(2.5rem,8vw,6rem)] font-bold tracking-tight leading-[1.05] mb-6 text-white">
+          Building systems that <br className="hidden md:block" />
+          <span className="text-gray-500">scale & never fail.</span>
+        </h1>
+
+        {/* Bio */}
+        <p className="text-base md:text-lg text-gray-400 max-w-2xl mb-12 leading-relaxed font-mono">
           {profile.bio}
-        </motion.p>
-        
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
-          className="flex flex-col sm:flex-row items-center gap-4"
-        >
+        </p>
+
+        {/* Technical CTAs */}
+        <div className="flex flex-col sm:flex-row items-center gap-4 border-l-2 border-[#333] pl-4">
           <Link
             href="#work"
-            className="group flex items-center gap-2 px-6 py-3 rounded-full bg-white text-black font-medium hover:bg-gray-200 transition-colors w-full sm:w-auto justify-center"
+            className="flex items-center gap-3 px-6 py-3 bg-white text-black font-semibold hover:bg-gray-200 transition-colors w-full sm:w-auto justify-center"
           >
-            View My Work
-            <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+            View Architecture
           </Link>
           <Link
-            href="#contact"
-            className="px-6 py-3 rounded-full border border-white/10 text-white font-medium hover:bg-white/5 transition-colors w-full sm:w-auto justify-center flex"
+            href={profile.github}
+            target="_blank"
+            className="flex items-center gap-3 px-6 py-3 border border-[#333] text-gray-300 font-medium hover:bg-[#111] hover:text-white transition-colors w-full sm:w-auto justify-center"
           >
-            Let's Connect
+            <Code className="w-4 h-4" />
+            GitHub
           </Link>
-        </motion.div>
+        </div>
+      </div>
+
+      {/* Scroll indicator */}
+      <div className="absolute bottom-8 left-12 hidden md:flex items-center gap-3 text-gray-500 font-mono text-xs">
+        <ArrowDown className="w-4 h-4 animate-bounce" />
+        <span>SCROLL_DOWN</span>
       </div>
     </section>
   );
