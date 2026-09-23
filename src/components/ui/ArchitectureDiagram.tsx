@@ -31,11 +31,11 @@ export default function ArchitectureDiagram({ type = "standard-crud" }: Props) {
   const Node = ({ icon: Icon, label, sub }: { icon: LucideIcon; label: string; sub: string }) => (
     <motion.div
       variants={nodeVariants}
-      className="flex flex-col items-center justify-center p-2 sm:p-3 md:p-4 border border-[#333] bg-[#0d0d0d] min-w-[75px] sm:min-w-[90px] md:min-w-[120px] relative group hover:border-[#555] transition-colors"
+      className="flex flex-col items-center justify-center p-2 sm:p-3 md:p-4 border border-[#333] bg-[#0d0d0d] w-[75px] sm:w-[90px] md:w-[120px] shrink-0 relative group hover:border-[#555] transition-colors"
     >
-      <Icon className="w-4 h-4 sm:w-5 sm:h-5 text-gray-400 mb-1.5 md:mb-2 group-hover:text-white transition-colors" />
-      <span className="text-[8px] sm:text-[10px] md:text-xs font-mono text-gray-200 text-center">{label}</span>
-      <span className="text-[7px] sm:text-[9px] md:text-[10px] text-gray-600 mt-1 text-center leading-tight">{sub}</span>
+      <Icon className="w-4 h-4 sm:w-5 sm:h-5 text-gray-400 mb-1.5 md:mb-2 group-hover:text-white transition-colors shrink-0" />
+      <span className="text-[8px] sm:text-[10px] md:text-xs font-mono text-gray-200 text-center break-words whitespace-normal leading-tight w-full">{label}</span>
+      <span className="text-[7px] sm:text-[9px] md:text-[10px] text-gray-600 mt-1 text-center leading-tight break-words whitespace-normal w-full">{sub}</span>
     </motion.div>
   );
 

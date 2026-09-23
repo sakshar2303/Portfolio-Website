@@ -55,8 +55,11 @@ function FeaturedProject({ project, index }: { project: Project; index: number }
         </div>
 
         <div className="flex flex-col md:flex-row relative">
+          {/* Clickable Overlay */}
+          <a href={project.github || project.live || "#"} target="_blank" rel="noopener noreferrer" className="absolute inset-0 z-10" aria-label={`View ${project.title}`} />
+          
           {/* Left: content with subtle horizontal parallax */}
-          <motion.div style={{ x: contentX }} className="flex flex-col p-8 md:p-12 md:w-[48%] relative z-10">
+          <motion.div style={{ x: contentX }} className="flex flex-col p-8 md:p-12 md:w-[48%] relative z-20 pointer-events-none">
             <motion.h3
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -107,7 +110,7 @@ function FeaturedProject({ project, index }: { project: Project; index: number }
               whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
               transition={{ delay: 0.4 }}
-              className="flex items-center gap-5 mt-auto"
+              className="flex items-center gap-5 mt-auto pointer-events-auto"
             >
               {project.live && (
                 <a
@@ -157,6 +160,9 @@ function SecondaryProject({ project, index }: { project: Project; index: number 
       transition={{ duration: 0.5, delay: index * 0.12, ease: [0.16, 1, 0.3, 1] }}
       className="relative flex flex-col border border-[#222] bg-[#0e0e0e] overflow-hidden group hover:border-[#444] transition-all duration-300 w-[300px] md:w-[380px] shrink-0"
     >
+      {/* Clickable Overlay */}
+      <a href={project.github || project.live || "#"} target="_blank" rel="noopener noreferrer" className="absolute inset-0 z-10" aria-label={`View ${project.title}`} />
+
       {/* Architecture diagram */}
       <div className="h-[180px] relative border-b border-[#1a1a1a]">
         <ArchitectureDiagram type={project.architecture} />
@@ -187,7 +193,7 @@ function SecondaryProject({ project, index }: { project: Project; index: number 
           )}
         </div>
 
-        <div className="flex items-center gap-4 pt-4 border-t border-[#1a1a1a]">
+        <div className="flex items-center gap-4 pt-4 border-t border-[#1a1a1a] relative z-20">
           {project.live && (
             <a href={project.live} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 text-[10px] font-mono text-gray-400 hover:text-white transition-colors">
               <ExternalLink className="w-3 h-3" /> DEMO
