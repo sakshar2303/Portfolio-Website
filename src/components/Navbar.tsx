@@ -25,13 +25,15 @@ export default function Navbar() {
       const sections = navLinks.map((l) => l.href.replace("#", ""));
       for (const id of [...sections].reverse()) {
         const el = document.getElementById(id);
-        if (el && el.getBoundingClientRect().top <= 150) {
+        if (el && el.getBoundingClientRect().top <= 250) {
           setActiveSection(id);
           break;
         }
       }
     };
     window.addEventListener("scroll", handleScroll, { passive: true });
+    // Initial check
+    handleScroll();
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
@@ -52,45 +54,52 @@ export default function Navbar() {
         initial={{ y: -100, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 border-b ${
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 border-b ${
           scrolled
             ? "bg-[#0a0a0a]/90 backdrop-blur-md border-[#222] py-4"
             : "bg-transparent border-transparent py-6"
         }`}
       >
-        <div className="max-w-5xl mx-auto px-6 md:px-12 flex items-center justify-between">
+        <div className="max-w-6xl mx-auto px-6 md:px-12 flex items-center justify-between">
           <Link
             href="/"
-            className="flex items-center gap-2 text-sm font-bold font-mono tracking-widest text-white uppercase"
+            className="group flex items-center gap-2 text-sm font-bold font-mono tracking-widest text-white uppercase relative overflow-hidden"
           >
             <Terminal className="w-4 h-4" />
-            {profile.name}
+            <span>{profile.name}</span>
+            <div className="absolute bottom-0 left-0 w-0 h-px bg-white group-hover:w-full transition-all duration-300" />
           </Link>
 
-          <nav className="hidden md:flex items-center gap-1 bg-[#111] border border-[#222] p-1 rounded-sm">
+          <nav className="hidden md:flex items-center gap-1 bg-[#111] border border-[#222] p-1 rounded-sm relative">
             {navLinks.map((link) => {
               const isActive = activeSection === link.href.replace("#", "");
               return (
                 <Link
                   key={link.name}
                   href={link.href}
-                  className={`relative px-4 py-1.5 text-xs font-mono uppercase tracking-wider transition-colors duration-200 ${
-                    isActive
-                      ? "text-white bg-[#222]"
-                      : "text-gray-500 hover:text-gray-300"
+                  className={`relative px-5 py-2 text-xs font-mono uppercase tracking-wider transition-colors duration-200 z-10 ${
+                    isActive ? "text-white" : "text-gray-500 hover:text-gray-300"
                   }`}
                 >
                   {link.name}
+                  {isActive && (
+                    <motion.div
+                      layoutId="nav-active-bg"
+                      className="absolute inset-0 bg-[#222] z-[-1]"
+                      transition={{ type: "spring", stiffness: 400, damping: 30 }}
+                    />
+                  )}
                 </Link>
               );
             })}
             <div className="w-px h-4 bg-[#333] mx-2" />
             <Link
-              href="#contact"
-              className="px-4 py-1.5 text-xs font-mono uppercase tracking-wider text-black bg-white hover:bg-gray-200 transition-colors"
-            >
-              Contact
-            </Link>
+               href="#contact"
+               className="group relative px-5 py-2 text-xs font-mono uppercase tracking-wider text-black bg-white overflow-hidden z-10"
+             >
+               <span className="relative z-10 group-hover:text-white transition-colors duration-300">Contact</span>
+               <div className="absolute inset-0 bg-[#111] translate-y-full group-hover:translate-y-0 transition-transform duration-300 z-0" />
+             </Link>
           </nav>
 
           <button
@@ -112,7 +121,8 @@ export default function Navbar() {
             transition={{ duration: 0.2 }}
             className="fixed inset-0 z-40 bg-[#0a0a0a] flex flex-col items-center justify-center"
           >
-            <nav className="flex flex-col items-center gap-4 w-full px-12">
+            <div className="absolute inset-0 bg-[linear-gradient(#fff_1px,transparent_1px),linear-gradient(90deg,#fff_1px,transparent_1px)] bg-[size:40px_40px] opacity-[0.02]" />
+            <nav className="flex flex-col items-center gap-4 w-full px-12 relative z-10">
               {navLinks.map((link, i) => (
                 <motion.div
                   key={link.name}
