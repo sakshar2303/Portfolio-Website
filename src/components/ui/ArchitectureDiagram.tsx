@@ -31,18 +31,18 @@ export default function ArchitectureDiagram({ type = "standard-crud" }: Props) {
   const Node = ({ icon: Icon, label, sub }: { icon: LucideIcon; label: string; sub: string }) => (
     <motion.div
       variants={nodeVariants}
-      className="flex flex-col items-center justify-center p-3 md:p-4 border border-[#333] bg-[#0d0d0d] min-w-[90px] md:min-w-[120px] relative group hover:border-[#555] transition-colors"
+      className="flex flex-col items-center justify-center p-2 sm:p-3 md:p-4 border border-[#333] bg-[#0d0d0d] min-w-[75px] sm:min-w-[90px] md:min-w-[120px] relative group hover:border-[#555] transition-colors"
     >
-      <Icon className="w-5 h-5 text-gray-400 mb-2 group-hover:text-white transition-colors" />
-      <span className="text-[10px] md:text-xs font-mono text-gray-200 text-center">{label}</span>
-      <span className="text-[9px] md:text-[10px] text-gray-600 mt-1 text-center">{sub}</span>
+      <Icon className="w-4 h-4 sm:w-5 sm:h-5 text-gray-400 mb-1.5 md:mb-2 group-hover:text-white transition-colors" />
+      <span className="text-[8px] sm:text-[10px] md:text-xs font-mono text-gray-200 text-center">{label}</span>
+      <span className="text-[7px] sm:text-[9px] md:text-[10px] text-gray-600 mt-1 text-center leading-tight">{sub}</span>
     </motion.div>
   );
 
   const Connector = () => (
-    <motion.div variants={lineVariants} className="origin-left flex items-center px-1 md:px-3">
-      <div className="w-6 md:w-10 h-px bg-[#444] relative">
-        <ArrowRight className="w-3 h-3 text-[#555] absolute -right-1.5 -top-1.5" />
+    <motion.div variants={lineVariants} className="origin-left flex items-center px-0.5 sm:px-1 md:px-3">
+      <div className="w-3 sm:w-6 md:w-10 h-px bg-[#444] relative">
+        <ArrowRight className="w-2.5 h-2.5 sm:w-3 sm:h-3 text-[#555] absolute -right-1 sm:-right-1.5 -top-1 sm:-top-1.5" />
       </div>
     </motion.div>
   );
@@ -110,11 +110,11 @@ export default function ArchitectureDiagram({ type = "standard-crud" }: Props) {
         initial="hidden"
         whileInView="show"
         viewport={{ once: true, margin: "-30px" }}
-        className="flex-1 flex items-center justify-center p-4 md:p-6"
+        className="flex-1 flex items-center justify-center p-2 sm:p-4 md:p-6"
       >
-        <div className="flex items-center justify-center gap-0 flex-wrap md:flex-nowrap">
+        <div className="flex items-center justify-center gap-0 flex-nowrap w-full md:w-auto">
           {config.nodes.map((node, i) => (
-            <div key={node.label} className="flex items-center">
+            <div key={node.label} className="flex items-center shrink-0">
               <Node icon={node.icon} label={node.label} sub={node.sub} />
               {i < config.nodes.length - 1 && <Connector />}
             </div>
