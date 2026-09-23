@@ -155,7 +155,7 @@ function SecondaryProject({ project, index }: { project: Project; index: number 
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-60px" }}
       transition={{ duration: 0.5, delay: index * 0.12, ease: [0.16, 1, 0.3, 1] }}
-      className="relative flex flex-col border border-[#222] bg-[#0e0e0e] overflow-hidden group hover:border-[#444] transition-all duration-300"
+      className="relative flex flex-col border border-[#222] bg-[#0e0e0e] overflow-hidden group hover:border-[#444] transition-all duration-300 w-[300px] md:w-[380px] shrink-0 snap-start"
     >
       {/* Architecture diagram */}
       <div className="h-[180px] relative border-b border-[#1a1a1a]">
@@ -258,11 +258,17 @@ export default function Projects() {
           <div className="flex-1 h-px bg-[#1a1a1a]" />
         </motion.div>
 
-        {/* Secondary: 3-column grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {secondary.map((project, i) => (
-            <SecondaryProject key={project.title} project={project as Project} index={i} />
-          ))}
+        {/* Secondary: Horizontal Carousel */}
+        <div className="relative w-full -mx-6 px-6 md:-mx-12 md:px-12">
+          {/* Fading edges for the carousel */}
+          <div className="absolute top-0 bottom-0 left-0 w-8 md:w-24 bg-gradient-to-r from-black to-transparent z-10 pointer-events-none" />
+          <div className="absolute top-0 bottom-0 right-0 w-8 md:w-24 bg-gradient-to-l from-black to-transparent z-10 pointer-events-none" />
+          
+          <div className="flex gap-6 overflow-x-auto snap-x snap-mandatory pb-8 pt-4 hide-scrollbar cursor-grab active:cursor-grabbing">
+            {secondary.map((project, i) => (
+              <SecondaryProject key={project.title} project={project as Project} index={i} />
+            ))}
+          </div>
         </div>
       </div>
     </section>

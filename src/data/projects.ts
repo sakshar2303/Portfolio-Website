@@ -50,4 +50,24 @@ export const projects = [
     featured: false,
     architecture: "standard-crud",
   },
+  {
+    title: "Kubescape Core",
+    description:
+      "Fixed a class of silent-crash bugs in Kubescape (Kubernetes security platform) by adding explicit error handling for git URL parsing. Landed production code reviewed and merged by external maintainers.",
+    technologies: ["Go", "Kubernetes", "Git", "Security"],
+    category: "Open Source / Infrastructure",
+    github: "https://github.com/kubescape/kubescape",
+    featured: false,
+    architecture: "event-driven",
+  },
+  {
+    title: "Swarm AI Agents",
+    description:
+      "Built multi-agent conversational systems using local LLMs. Designed a robust orchestration layer that routes complex tasks to specialized sub-agents with shared memory and tool usage capabilities.",
+    technologies: ["Python", "OpenAI SDK", "LangChain", "Docker"],
+    category: "AI / Agents",
+    github: "https://github.com/sakshar23/swarm-agents",
+    featured: false,
+    architecture: "rag-pipeline",
+  },
 ];
