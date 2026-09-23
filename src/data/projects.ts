@@ -2,8 +2,8 @@ export const projects = [
   {
     title: "PulseWatch",
     description:
-      "Autonomous Agentic SRE & Cloud-Native Observability Platform with LLM-as-a-Judge Anomaly Verification, Closed-Loop Auto-Remediation, NATS JetStream Backpressure, and sub-20ms p99 ingestion. 38 Go tests, 41 Python tests, 100% chaos resilience.",
-    technologies: ["Go", "Python", "NATS JetStream", "Claude AI", "Docker", "React"],
+      "Designed a real-time observability platform as a decoupled telemetry pipeline built for high-throughput ingestion with zero data loss. Wrote Go edge collectors with ring buffers feeding NATS JetStream for at-least-once queuing into TimescaleDB. Decoupled anomaly detection from ingestion so Python/FastAPI AI detectors scale or fail independently.",
+    technologies: ["Go", "NATS JetStream", "TimescaleDB", "FastAPI", "React", "Python"],
     category: "Platform Engineering",
     live: "https://sakshar2303.github.io/PulseWatch/",
     github: "https://github.com/sakshar23/PulseWatch",
@@ -13,8 +13,8 @@ export const projects = [
   {
     title: "Filing Sleuth",
     description:
-      "Grounded SEC EDGAR Financial Research Agent with Verifiable Citations, XBRL Ground Truth, Structure-Aware Chunking, and Zero-Hallucination Guarantees. Scored 20/20 (100%) on benchmark evaluation.",
-    technologies: ["Python", "FastAPI", "LLMs", "XBRL", "React", "RAG"],
+      "Built an LLM agent that measured 0.0% hallucination on complex multi-fiscal-year comparisons, using a deterministic retrieval pipeline written from scratch. Forced every generated answer to cite verifiable ground truth by treating SEC XBRL tags as the source of authority.",
+    technologies: ["Python", "ChromaDB", "FastAPI", "Anthropic/OpenAI APIs", "SEC EDGAR API"],
     category: "AI / FinTech",
     live: "https://sakshar2303.github.io/filing-sleuth/",
     github: "https://github.com/sakshar23/filing-sleuth",
