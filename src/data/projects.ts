@@ -44,10 +44,10 @@ export const projects = [
   {
     title: "Hisaab Sathi",
     description:
-      "Full-stack financial management platform (Vyapaar Sathi) with bank account tracking, dynamic charting, cookie consent management, and privacy-first architecture. Built for Indian small businesses.",
-    technologies: ["Next.js", "TypeScript", "Prisma", "PostgreSQL", "Tailwind CSS"],
+      "Architected a full-stack AI-powered SaaS platform for Indian micro-merchants. Built an AI OCR bill-scanning pipeline using Google Gemini 2.5 Flash vision API to digitize handwritten ledgers. Developed a domain-specific AI chartered-accountant chatbot supporting 21 languages, and engineered a real-time P&L dashboard with one-tap settlement.",
+    technologies: ["Next.js 16", "React 19", "TypeScript", "Supabase", "Google Gemini API"],
     category: "FinTech / SaaS",
-    featured: false,
+    featured: true,
     architecture: "standard-crud",
   },
   {

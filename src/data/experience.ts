@@ -7,6 +7,13 @@ export const experience = [
     technologies: ["Go", "Python", "Java", "Shell/Bash", "GitHub Actions"]
   },
   {
+    company: "Hisaab Sathi",
+    position: "Founder & Lead Developer",
+    date: "2026 – Present",
+    description: "Architected and shipped a full-stack AI-powered SaaS platform for Indian micro-merchants. Built an AI OCR bill-scanning pipeline using Google Gemini 2.5 Flash vision API to digitize handwritten ledgers. Developed a domain-specific AI chartered-accountant chatbot grounded in GST and Indian IT Act, supporting 21 Indian languages. Engineered a credit ledger with real-time P&L dashboards and GSTR-ready XLSX report generation.",
+    technologies: ["Next.js 16", "React 19", "TypeScript", "Supabase", "Google Gemini API"]
+  },
+  {
     company: "Robin Hood Army",
     position: "Volunteer Coordinator",
     date: "Mar 2020 – Jul 2025",
