@@ -163,9 +163,8 @@ function SecondaryProject({ project, index }: { project: Project; index: number 
       {/* Clickable Overlay */}
       <a href={project.github || project.live || "#"} target="_blank" rel="noopener noreferrer" className="absolute inset-0 z-10" aria-label={`View ${project.title}`} />
 
-      {/* Architecture diagram */}
       <div className="h-[180px] relative border-b border-[#1a1a1a]">
-        <ArchitectureDiagram type={project.architecture} />
+        <ArchitectureDiagram type={project.architecture} compact />
       </div>
 
       {/* Content */}

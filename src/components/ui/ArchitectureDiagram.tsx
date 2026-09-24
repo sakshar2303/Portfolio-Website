@@ -7,6 +7,7 @@ type ArchitectureType = "event-driven" | "rag-pipeline" | "redis-lock" | "mol-si
 
 interface Props {
   type?: ArchitectureType;
+  compact?: boolean;
 }
 
 const containerVariants: Variants = {
@@ -27,22 +28,36 @@ const lineVariants: Variants = {
   show: { scaleX: 1, transition: { duration: 0.4, ease: "easeOut" } },
 };
 
-export default function ArchitectureDiagram({ type = "standard-crud" }: Props) {
+export default function ArchitectureDiagram({ type = "standard-crud", compact = false }: Props) {
   const Node = ({ icon: Icon, label, sub }: { icon: LucideIcon; label: string; sub: string }) => (
     <motion.div
       variants={nodeVariants}
-      className="flex flex-col items-center justify-center p-2 sm:p-3 md:p-4 border border-[#333] bg-[#0d0d0d] w-[75px] sm:w-[90px] md:w-[120px] shrink-0 relative group hover:border-[#555] transition-colors"
+      className={`flex flex-col items-center justify-center border border-[#333] bg-[#0d0d0d] shrink-0 relative group hover:border-[#555] transition-colors ${
+        compact ? "p-2 w-[75px]" : "p-2 sm:p-3 md:p-4 w-[75px] sm:w-[90px] md:w-[120px]"
+      }`}
     >
-      <Icon className="w-4 h-4 sm:w-5 sm:h-5 text-gray-400 mb-1.5 md:mb-2 group-hover:text-white transition-colors shrink-0" />
-      <span className="text-[8px] sm:text-[10px] md:text-xs font-mono text-gray-200 text-center break-words whitespace-normal leading-tight w-full">{label}</span>
-      <span className="text-[7px] sm:text-[9px] md:text-[10px] text-gray-600 mt-1 text-center leading-tight break-words whitespace-normal w-full">{sub}</span>
+      <Icon className={`text-gray-400 group-hover:text-white transition-colors shrink-0 ${
+        compact ? "w-4 h-4 mb-1.5" : "w-4 h-4 sm:w-5 sm:h-5 mb-1.5 md:mb-2"
+      }`} />
+      <span className={`font-mono text-gray-200 text-center break-words whitespace-normal leading-tight w-full ${
+        compact ? "text-[8px]" : "text-[8px] sm:text-[10px] md:text-xs"
+      }`}>{label}</span>
+      <span className={`text-gray-600 mt-1 text-center leading-tight break-words whitespace-normal w-full ${
+        compact ? "text-[7px]" : "text-[7px] sm:text-[9px] md:text-[10px]"
+      }`}>{sub}</span>
     </motion.div>
   );
 
   const Connector = () => (
-    <motion.div variants={lineVariants} className="origin-left flex items-center px-0.5 sm:px-1 md:px-3">
-      <div className="w-3 sm:w-6 md:w-10 h-px bg-[#444] relative">
-        <ArrowRight className="w-2.5 h-2.5 sm:w-3 sm:h-3 text-[#555] absolute -right-1 sm:-right-1.5 -top-1 sm:-top-1.5" />
+    <motion.div variants={lineVariants} className={`origin-left flex items-center ${
+      compact ? "px-1" : "px-0.5 sm:px-1 md:px-3"
+    }`}>
+      <div className={`h-px bg-[#444] relative ${
+        compact ? "w-4" : "w-3 sm:w-6 md:w-10"
+      }`}>
+        <ArrowRight className={`text-[#555] absolute ${
+          compact ? "w-2.5 h-2.5 -right-1 -top-1" : "w-2.5 h-2.5 sm:w-3 sm:h-3 -right-1 sm:-right-1.5 -top-1 sm:-top-1.5"
+        }`} />
       </div>
     </motion.div>
   );
